@@ -42,7 +42,11 @@ except (FileNotFoundError, KeyError, ValueError):
 
 
 # Ambiente: produccion o homologacion
-_ENV = os.environ.get("AFIP_ENV", "prod").lower()
+# Agrega Maxi: la linea original es pegandole a Producción, pero la cambio a homo
+# para no andar dependiendo de acordarme de setear la variable AFIP_ENV
+# Entonces la linea original es:
+# _ENV = os.environ.get("AFIP_ENV", "prod").lower()
+_ENV = os.environ.get("AFIP_ENV", "homo").lower()
 if _ENV in ("homo", "homologacion", "test"):
     WSAA_URL = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms?WSDL"
     WSFE_URL = "https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL"
